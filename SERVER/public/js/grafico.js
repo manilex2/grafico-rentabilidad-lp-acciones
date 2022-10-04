@@ -27,9 +27,9 @@ function totalChart(ctx, extraerdatos){
     var matriz2 = [];
     var matriz3 = [];
     var matriz4 = [];
-    var matriz5 = [];
+    /* var matriz5 = [];
     var matriz6 = [];
-    var matriz7 = [];
+    var matriz7 = []; */
 
     const D30 = extraerdatos.map((item) => {
         for (let i = 0; i < item.length; i++) {
@@ -71,7 +71,7 @@ function totalChart(ctx, extraerdatos){
         return matriz4;
     })
     
-    const A3 = extraerdatos.map((item) => {
+    /* const A3 = extraerdatos.map((item) => {
         for (let i = 0; i < item.length; i++) {
             const element = item[i];
             if (element.a3) {
@@ -99,7 +99,7 @@ function totalChart(ctx, extraerdatos){
             }
         }
         return matriz7;
-    })
+    }) */
 
     var total = []
 
@@ -133,7 +133,7 @@ function totalChart(ctx, extraerdatos){
         backgroundColor: 'red'
     });  
     
-    total.push({
+    /* total.push({
         type: 'bar',
         label: '3 Años',
         data: [A3[0][0], A3[0][1], A3[0][2]],
@@ -152,7 +152,7 @@ function totalChart(ctx, extraerdatos){
         label: '10 Años',
         data: [A10[0][0], A10[0][1], A10[0][2]],
         backgroundColor: 'yellow'
-    });  
+    });  */ 
     
     const chart = new Chart(ctx, {
         data: {
