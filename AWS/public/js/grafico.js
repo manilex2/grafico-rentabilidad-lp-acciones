@@ -9,20 +9,20 @@ const plugin = {
     id: 'custom_canvas_background_image',
     beforeDraw: (chart) => {
         if (image.complete) {
-        let contexto = chart.ctx;
+        const ctx = chart.ctx;
         const {top, left, width, height} = chart.chartArea;
         const x = left + width / 2 - image.width / 2;
         const y = top + height / 2 - image.height / 2;
-        contexto.drawImage(image, x, y);
+        ctx.drawImage(image, x, y);
         } else {
-            image.onload = () => chart.draw();
+        image.onload = () => chart.draw();
         }
     }
 };
 
 
 
-function totalChart(extraerdatos){
+function totalChart(ctx, extraerdatos){
     var matriz1 = [];
     var matriz2 = [];
     var matriz3 = [];
@@ -35,7 +35,7 @@ function totalChart(extraerdatos){
         for (let i = 0; i < item.length; i++) {
             const element = item[i];
             if (element.d30) {
-                matriz1.push((element.d30*100).toFixed(0));
+                matriz1.push(element.d30);
             }
         }
         return matriz1;
@@ -45,7 +45,7 @@ function totalChart(extraerdatos){
         for (let i = 0; i < item.length; i++) {
             const element = item[i];
             if (element.m3) {
-                matriz2.push((element.m3*100).toFixed(0));
+                matriz2.push(element.m3);
             }
         }
         return matriz2;
@@ -55,7 +55,7 @@ function totalChart(extraerdatos){
         for (let i = 0; i < item.length; i++) {
             const element = item[i];
             if (element.m6) {
-                matriz3.push((element.m6*100).toFixed(0));
+                matriz3.push(element.m6);
             }
         }
         return matriz3;
@@ -65,7 +65,7 @@ function totalChart(extraerdatos){
         for (let i = 0; i < item.length; i++) {
             const element = item[i];
             if (element.a1) {
-                matriz4.push((element.a1*100).toFixed(0));
+                matriz4.push(element.a1);
             }
         }
         return matriz4;
@@ -159,7 +159,7 @@ function totalChart(extraerdatos){
             datasets: total,
             labels: ['Conservador', 'Optimista', 'Pesimista'],
         },
-        plugins: [plugin, ChartDataLabels],
+        plugins: [plugin],
         options: {
             layout: {
                 padding: {
@@ -210,19 +210,6 @@ function totalChart(extraerdatos){
                     color: '#FFF',
                     padding: 30
                 },
-                datalabels: {
-                    color: '#FFF',
-                    anchor: 'end',
-                    align: 'top',
-                    offset: 10,
-                    font: {
-                        weight: 'bold'
-                    },
-                    formatter: function (value, context) {
-                        console.log(context.dataset.data[context.dataIndex]);
-                        return context.dataset.data[context.dataIndex] + '%';
-                    },
-                },
                 /*legend: {
                     position: 'bottom',
                     labels: {
@@ -237,7 +224,6 @@ function totalChart(extraerdatos){
                     }
                 },*/
                 tooltip: {
-                    enabled: false,
                     backgroundColor: '#0584f6',
                     titleFontSize: 20,
                     xPadding: 20,
@@ -248,17 +234,17 @@ function totalChart(extraerdatos){
                 },
             }
         },
+        
     });
-    
 }
 
 async function renderizarCharts() {
     /*global fetch*/
-    const respuesta = await fetch(`/graficos/grafico/` + nombreIndice).then((res) => {
+    const respuesta = await fetch(`/rent/graficos/grafico/` + nombreIndice).then((res) => {
         return res.json();
     }).then((json) => {
         var extraerDatos = json;
-        totalChart(extraerDatos);
+        totalChart(ctx, extraerDatos);
     });
 }
 renderizarCharts();
