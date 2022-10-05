@@ -24,4 +24,4 @@ functions:
       - httpApi: 
         cors: true
         method: GET
-        path: /
+        path: /rent/
