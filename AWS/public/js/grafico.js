@@ -159,7 +159,7 @@ function totalChart(ctx, extraerdatos){
             datasets: total,
             labels: ['Conservador', 'Optimista', 'Pesimista'],
         },
-        plugins: [plugin],
+        plugins: [plugin, ChartDataLabels],
         options: {
             layout: {
                 padding: {
