@@ -21,5 +21,6 @@ functions:
     handler: index.handler
     description: LTG19 - Obtiene el gráfico de Rentabilidad a largo plazo de Acciones desde los datos de AWS RDS.
     events:
-      - http: 'GET {proxy+}'
-      - http: GET /
+      - http: 
+        cors: true
+        method: get
