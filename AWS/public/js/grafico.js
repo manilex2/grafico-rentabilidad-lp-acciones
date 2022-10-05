@@ -35,7 +35,7 @@ function totalChart(ctx, extraerdatos){
         for (let i = 0; i < item.length; i++) {
             const element = item[i];
             if (element.d30) {
-                matriz1.push(element.d30);
+                matriz1.push((element.d30*100).toFixed(0));
             }
         }
         return matriz1;
@@ -45,7 +45,7 @@ function totalChart(ctx, extraerdatos){
         for (let i = 0; i < item.length; i++) {
             const element = item[i];
             if (element.m3) {
-                matriz2.push(element.m3);
+                matriz2.push((element.m3*100).toFixed(0));
             }
         }
         return matriz2;
@@ -55,7 +55,7 @@ function totalChart(ctx, extraerdatos){
         for (let i = 0; i < item.length; i++) {
             const element = item[i];
             if (element.m6) {
-                matriz3.push(element.m6);
+                matriz3.push((element.m6*100).toFixed(0));
             }
         }
         return matriz3;
@@ -65,7 +65,7 @@ function totalChart(ctx, extraerdatos){
         for (let i = 0; i < item.length; i++) {
             const element = item[i];
             if (element.a1) {
-                matriz4.push(element.a1);
+                matriz4.push((element.a1*100).toFixed(0));
             }
         }
         return matriz4;
@@ -210,6 +210,19 @@ function totalChart(ctx, extraerdatos){
                     color: '#FFF',
                     padding: 30
                 },
+                datalabels: {
+                    color: '#FFF',
+                    anchor: 'end',
+                    align: 'top',
+                    offset: 10,
+                    font: {
+                        weight: 'bold'
+                    },
+                    formatter: function (value, context) {
+                        console.log(context.dataset.data[context.dataIndex]);
+                        return context.dataset.data[context.dataIndex] + '%';
+                    },
+                },
                 /*legend: {
                     position: 'bottom',
                     labels: {
@@ -224,6 +237,7 @@ function totalChart(ctx, extraerdatos){
                     }
                 },*/
                 tooltip: {
+                    enabled: false,
                     backgroundColor: '#0584f6',
                     titleFontSize: 20,
                     xPadding: 20,
