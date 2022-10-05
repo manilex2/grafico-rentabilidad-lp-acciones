@@ -249,6 +249,7 @@ function totalChart(extraerdatos){
             }
         },
     });
+    
 }
 
 async function renderizarCharts() {
